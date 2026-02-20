@@ -98,6 +98,8 @@ A modular MERN stack e-commerce application with JWT auth, refresh tokens, Razor
 ### Frontend (`frontend/.env` from `.env.example`)
 - `VITE_API_URL`
 
+- Razorpay config errors such as `key_id or oauthToken is mandatory` mean backend env vars are missing; set both `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET` before starting the API.
+
 ## 5) How to Run Locally
 
 ```bash

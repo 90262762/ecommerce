@@ -2,7 +2,7 @@ import asyncHandler from 'express-async-handler';
 import crypto from 'crypto';
 import Order from '../models/Order.js';
 import Cart from '../models/Cart.js';
-import { razorpay } from '../config/razorpay.js';
+import { getRazorpayClient } from '../config/razorpay.js';
 import { sendEmail } from '../utils/sendEmail.js';
 
 export const createOrder = asyncHandler(async (req, res) => {
@@ -25,6 +25,7 @@ export const createOrder = asyncHandler(async (req, res) => {
   const totalPrice = orderItems.reduce((acc, item) => acc + item.quantity * item.price, 0);
   const amountInPaise = Math.round(totalPrice * 100);
 
+  const razorpay = getRazorpayClient();
   const paymentOrder = await razorpay.orders.create({
     amount: amountInPaise,
     currency: 'INR',
@@ -79,6 +80,11 @@ export const updateOrderStatus = asyncHandler(async (req, res) => {
 
 export const verifyRazorpayPayment = asyncHandler(async (req, res) => {
   const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+
+  if (!process.env.RAZORPAY_KEY_SECRET) {
+    res.status(500);
+    throw new Error('Razorpay key secret is missing in server configuration');
+  }
 
   const generatedSignature = crypto
     .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
