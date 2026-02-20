@@ -66,6 +66,10 @@ A modular MERN stack e-commerce application with JWT auth, refresh tokens, Razor
 6. **Security and Production Readiness**
    - Helmet, CORS, HTTP-only cookies, bcrypt hashing, centralized error responses.
 
+## Frontend: If you are confused where to start
+
+Read `frontend/README.md` for a practical walkthrough: how routes/pages/slices/services connect, how data flows, and how to debug common issues quickly.
+
 ## 3) Frontend Architecture (Step-by-step)
 
 1. **Bootstrapping**
