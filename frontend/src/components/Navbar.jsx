@@ -10,16 +10,31 @@ const Navbar = () => {
 
   return (
     <header className="bg-white shadow dark:bg-slate-800">
-      <nav className="container-padded flex items-center justify-between py-4">
+      <nav className="container-padded flex flex-wrap items-center justify-between gap-3 py-4">
         <Link to="/" className="text-xl font-bold">
           ShopMERN
         </Link>
-        <div className="flex items-center gap-4">
-          <Link to="/cart">Cart ({items.length})</Link>
-          {user ? <Link to="/profile">{user.name}</Link> : <Link to="/auth">Login</Link>}
-          {user?.role === 'admin' && <Link to="/admin">Admin</Link>}
+
+        <div className="flex items-center gap-3 text-sm sm:text-base">
+          <Link className="rounded px-2 py-1 hover:bg-slate-100 dark:hover:bg-slate-700" to="/cart">
+            Cart ({items.length})
+          </Link>
+          {user ? (
+            <Link className="rounded px-2 py-1 hover:bg-slate-100 dark:hover:bg-slate-700" to="/profile">
+              My Profile
+            </Link>
+          ) : (
+            <Link className="rounded px-2 py-1 hover:bg-slate-100 dark:hover:bg-slate-700" to="/auth">
+              Login / Register
+            </Link>
+          )}
+          {user?.role === 'admin' ? (
+            <Link className="rounded px-2 py-1 hover:bg-slate-100 dark:hover:bg-slate-700" to="/admin">
+              Admin Dashboard
+            </Link>
+          ) : null}
           <button className="rounded border px-2 py-1" onClick={() => dispatch(toggleDarkMode())}>
-            {darkMode ? 'Light' : 'Dark'}
+            {darkMode ? 'Light Mode' : 'Dark Mode'}
           </button>
         </div>
       </nav>
