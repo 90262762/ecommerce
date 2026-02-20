@@ -1,6 +1,6 @@
 # MERN E-Commerce Platform (Production-Ready Scaffold)
 
-A modular MERN stack e-commerce application with JWT auth, refresh tokens, Stripe checkout, Cloudinary uploads, Redux Toolkit state management, and Tailwind CSS UI.
+A modular MERN stack e-commerce application with JWT auth, refresh tokens, Razorpay checkout, Cloudinary uploads, Redux Toolkit state management, and Tailwind CSS UI.
 
 ## 1) Complete Folder Structure
 
@@ -36,7 +36,7 @@ A modular MERN stack e-commerce application with JWT auth, refresh tokens, Strip
 
 1. **Configuration Layer**
    - `config/db.js`: MongoDB connection.
-   - `config/stripe.js`: Stripe SDK setup.
+   - `config/razorpay.js`: Razorpay SDK setup.
    - `config/cloudinary.js`: image hosting configuration.
 
 2. **Domain Models**
@@ -56,7 +56,7 @@ A modular MERN stack e-commerce application with JWT auth, refresh tokens, Strip
    - Products: CRUD + reviews + search/filter/pagination.
    - Categories: CRUD.
    - Cart: add/remove/list/update item quantities.
-   - Orders: create Stripe checkout session, verify payment, list/update orders.
+   - Orders: create Razorpay checkout session, verify payment, list/update orders.
    - Uploads: Cloudinary image upload endpoint.
 
 5. **Routes and API Design**
@@ -90,14 +90,13 @@ A modular MERN stack e-commerce application with JWT auth, refresh tokens, Strip
 ### Backend (`backend/.env` from `.env.example`)
 - DB: `MONGO_URI`
 - Auth: `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`
-- Stripe: `STRIPE_SECRET_KEY`
+- Razorpay: `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`
 - Cloudinary: `CLOUDINARY_*`
 - Mail: `SMTP_*`
 - CORS: `CLIENT_URL`
 
 ### Frontend (`frontend/.env` from `.env.example`)
 - `VITE_API_URL`
-- `VITE_STRIPE_PUBLISHABLE_KEY`
 
 ## 5) How to Run Locally
 

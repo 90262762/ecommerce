@@ -18,7 +18,7 @@ const orderSchema = new mongoose.Schema(
       postalCode: { type: String, required: true },
       country: { type: String, required: true },
     },
-    paymentMethod: { type: String, enum: ['stripe', 'cod'], default: 'stripe' },
+    paymentMethod: { type: String, enum: ['razorpay', 'cod'], default: 'razorpay' },
     paymentStatus: { type: String, enum: ['pending', 'paid', 'failed'], default: 'pending' },
     orderStatus: {
       type: String,
@@ -26,7 +26,8 @@ const orderSchema = new mongoose.Schema(
       default: 'processing',
     },
     totalPrice: { type: Number, required: true, min: 0 },
-    stripeSessionId: String,
+    razorpayOrderId: String,
+    razorpayPaymentId: String,
     isPaid: { type: Boolean, default: false },
     paidAt: Date,
   },
